@@ -126,8 +126,9 @@
     <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2">
-      <HintPath>..\..\PSO2 Tweaker Updater\WindowsApplication2\bin\Release\DevComponents.DotNetBar2.dll</HintPath>
+    <Reference Include="devcomponents.dotnetbar2, Version=9.1.0.0, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.5\devcomponents.dotnetbar2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
@@ -152,6 +153,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="External.vb" />
+    <Compile Include="FrmMain2.Designer.vb">
+      <DependentUpon>FrmMain2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmPlugins.Designer.vb">
       <DependentUpon>frmPlugins.vb</DependentUpon>
     </Compile>
@@ -160,6 +167,12 @@
     </Compile>
     <Compile Include="Languages.vb" />
     <Compile Include="Md5Provider.vb" />
+    <Compile Include="messageForm.Designer.vb">
+      <DependentUpon>messageForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="messageForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -253,6 +266,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Pso2ProxyInfo.vb" />
+    <Compile Include="splashScreen.Designer.vb">
+      <DependentUpon>splashScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="splashScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="YesNoMessage.Designer.vb">
+      <DependentUpon>YesNoMessage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="YesNoMessage.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Baka.resx">
@@ -268,6 +293,9 @@
       <DependentUpon>FrmMain.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain2.resx">
+      <DependentUpon>FrmMain2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPlugins.resx">
       <DependentUpon>frmPlugins.vb</DependentUpon>
     </EmbeddedResource>
@@ -277,6 +305,9 @@
     <EmbeddedResource Include="FrmOptions.resx">
       <DependentUpon>FrmOptions.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="messageForm.resx">
+      <DependentUpon>messageForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\GlobalStrings.pl.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -332,6 +363,12 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="splashScreen.resx">
+      <DependentUpon>splashScreen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="YesNoMessage.resx">
+      <DependentUpon>YesNoMessage.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -350,6 +387,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="Resources\App.config" />
+    <None Include="Resources\user.pso2" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
@@ -369,6 +407,52 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\162EN.bmp" />
+    <None Include="Resources\132.bmp" />
+    <None Include="Resources\blankHBTN.bmp" />
+    <None Include="Resources\blankCBTN.bmp" />
+    <None Include="Resources\blankBTN.bmp" />
+    <None Include="Resources\215.bmp" />
+    <None Include="Resources\209.bmp" />
+    <None Include="Resources\208.bmp" />
+    <None Include="Resources\207.bmp" />
+    <None Include="Resources\198.bmp" />
+    <None Include="Resources\198 [Japanese %28Japan%29].bmp" />
+    <None Include="Resources\197.bmp" />
+    <None Include="Resources\197 [Japanese %28Japan%29].bmp" />
+    <None Include="Resources\172EN.bmp" />
+    <None Include="Resources\171EN.bmp" />
+    <None Include="Resources\170EN.bmp" />
+    <None Include="Resources\169EN.bmp" />
+    <None Include="Resources\168EN.bmp" />
+    <None Include="Resources\167EN.bmp" />
+    <None Include="Resources\166EN.bmp" />
+    <None Include="Resources\165EN.bmp" />
+    <None Include="Resources\164EN.bmp" />
+    <None Include="Resources\163EN.bmp" />
+    <None Include="Resources\161EN.bmp" />
+    <None Include="Resources\160EN.bmp" />
+    <None Include="Resources\159EN.bmp" />
+    <None Include="Resources\158EN.bmp" />
+    <None Include="Resources\157EN.bmp" />
+    <None Include="Resources\156EN.bmp" />
+    <None Include="Resources\155EN.bmp" />
+    <None Include="Resources\151EN.bmp" />
+    <None Include="Resources\150EN.bmp" />
+    <None Include="Resources\149EN.bmp" />
+    <None Include="Resources\148EN.bmp" />
+    <None Include="Resources\147EN.bmp" />
+    <None Include="Resources\146EN.bmp" />
+    <None Include="Resources\142EN.bmp" />
+    <None Include="Resources\141EN.bmp" />
+    <None Include="Resources\140EN.bmp" />
+    <None Include="Resources\139EN.bmp" />
+    <None Include="Resources\138EN.bmp" />
+    <None Include="Resources\137EN.bmp" />
+    <None Include="Resources\136EN.bmp" />
+    <None Include="Resources\135EN.bmp" />
+    <None Include="Resources\134EN.bmp" />
+    <None Include="Resources\131 [Japanese %28Japan%29].bmp" />
     <EmbeddedResource Include="ddraw.dll" />
     <Content Include="pso2 icon 512.ico" />
   </ItemGroup>

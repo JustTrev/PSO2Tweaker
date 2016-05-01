@@ -13,6 +13,7 @@ Namespace My
         Public Shared ReadOnly Client2 As MyWebClient = New MyWebClient() With {.Timeout = 10000, .Proxy = Nothing}
 
         Public Shared MainForm As FrmMain
+        Public Shared MainForm2 As FrmMain2
         Public Shared FreedomUrl As String = "http://108.61.203.33/freedom/"
         Public Shared HostsFilePath As String
         Public Shared Pso2RootDir As String
@@ -28,21 +29,60 @@ Namespace My
         Public Shared SidebarEnabled As Boolean = True
         Public Shared IsMainFormTopMost As Boolean = False
         Public Shared transOverride As Boolean = False
+        ' Public Shared guiElement As String
+
+
 
         Public Shared Sub Main()
 
             Try
+
+                'Set time reminder to players through the simple UI, and check first if the Tweaker settings have been set to advance or basic UI layout.
+                If RegKey.GetValue(Of String)(RegKey.GUIPlatform) = "Simple" Then
+
+                    If Date.Today.DayOfWeek.ToString = "Tuesday" Then
+                        If Date.Now.Hour >= 22 And Date.Now.Hour <= 23 Then
+                            messageForm.message_txt.Text = "Server is in maintenance right now." & vbCrLf & "It is not possible to loggin after starting the game."
+                            messageForm.ShowDialog()
+                        End If
+                    End If
+                    If Date.Today.DayOfWeek.ToString = "Wednesday" Then
+                        If Date.Now.Hour >= 0 And Date.Now.Hour <= 2 Then
+                            messageForm.message_txt.Text = "Server is in maintenance right now." & vbCrLf & "It is not possible to loggin after starting the game."
+                            messageForm.ShowDialog()
+                        End If
+                    End If
+                Else
+                    '  Nothing
+                End If
+
+
                 Helper.Log("Checking if the PSO2 Tweaker is running")
 
+                'Made single instance check to prevent multiple instances running.
                 If Helper.CheckIfRunning("PSO2 Tweaker") Then Environment.Exit(0)
 
-                If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.Pso2Dir)) Then
-                    Dim alreadyInstalled As MsgBoxResult = MsgBox("This appears to be the first time you've used the PSO2 Tweaker! Have you installed PSO2 already? If you select no, the PSO2 Tweaker will install it for you.", MsgBoxStyle.YesNo)
-                    If alreadyInstalled = vbNo Then
+
+                If RegKey.GetValue(Of String)(RegKey.GUIPlatform) = "Simple" Then
+                    'show fucking trees and unicorns.
+                    If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.Pso2Dir)) Then
+                        messageForm.message_txt.Text = "It's important that we allow you the best possible experience playing the JP version of Phantasy Star Online 2, with PSO2 Tweaker V3 (AL edition).  We will check to see if you have PSO2 already installed before proceeding."
+                        messageForm.ShowDialog()
                         IsPso2Installed = False
                         Return
                     End If
+                Else
+                    'display like normal for advance users.
+                    If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.Pso2Dir)) Then
+                        Dim alreadyInstalled As MsgBoxResult = MsgBox("This appears to be the first time you've used the PSO2 Tweaker! Have you installed PSO2 already? If you select no, the PSO2 Tweaker will install it for you.", MsgBoxStyle.YesNo)
+                        If alreadyInstalled = vbNo Then
+                            IsPso2Installed = False
+                            Return
+                        End If
+                    End If
+
                 End If
+
 
                 Dim locale = RegKey.GetValue(Of String)(RegKey.Locale)
 
@@ -224,6 +264,7 @@ Namespace My
             Try
                 Helper.Log("Loading settings...")
 
+                If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.GUIPlatform)) Then RegKey.SetValue(Of String)(RegKey.GUIPlatform, "Advance")
                 If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.PatchServer)) Then RegKey.SetValue(Of String)(RegKey.PatchServer, "Patch Server #1")
                 If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.SeenFuckSegaMessage)) Then RegKey.SetValue(Of Boolean)(RegKey.SeenFuckSegaMessage, False)
                 If String.IsNullOrEmpty(RegKey.GetValue(Of String)(RegKey.Backup)) Then RegKey.SetValue(Of String)(RegKey.Backup, "Always")
@@ -261,7 +302,7 @@ Namespace My
 
                 If StartPath = Helper.GetDownloadsPath() Then
                     If RegKey.GetValue(Of String)(RegKey.SeenDownloadMessage) = "No" Then
-                        MsgBox("Please be aware - Due to various Windows 7/8 issues, this program might not work correctly while in the ""Downloads"" folder. Please move it to it's own folder, like C:\Tweaker\")
+                        MsgBox("Please be aware - Due to issues with various Windows versions, this program might not work correctly while in the ""Downloads"" folder. Please move it to it's own folder, like C:\Tweaker\")
                         RegKey.SetValue(Of String)(RegKey.SeenDownloadMessage, "Yes")
                     End If
                 End If

@@ -22,6 +22,7 @@ Public Class RegKey
     Public Const OldX = "OldX"
     Public Const OldY = "OldY"
     Public Const Pso2Dir = "PSO2Dir"
+    Public Const PSO2installed = "PSO2installed"
     Public Const Pso2PatchlistMd5 = "PSO2PatchlistMD5"
     Public Const Pso2PrecedeVersion = "PSO2PrecedeVersion"
     Public Const JustPrepatched = "JustPrepatched"
@@ -59,6 +60,8 @@ Public Class RegKey
     Public Const LaunchPSO2fromORB = "LaunchPSO2fromORB"
     Public Const UseOldProgressBar = "UseOldProgressBar"
     Public Const PluginsEnabled = "PluginsEnabled"
+    Public Const GUIPlatform = "GUIPlatform"
+
 
     Private Shared ReadOnly RegistryCache As Dictionary(Of String, Object) = New Dictionary(Of String, Object)
     Private Shared ReadOnly RegistrySubKey As RegistryKey = Registry.CurrentUser.OpenSubKey("Software\AIDA", True)

@@ -27,8 +27,9 @@ Public Class FrmItemConfig
         Hide()
     End Sub
 
-    Private Shared Sub chkLogging_CheckedChanged(sender As Object, e As EventArgs) Handles chkLogging.CheckedChanged
-        File.Delete(Program.MainForm.lblDirectory.Text.Replace("\data\win32", "") & "\itemlog.txt")
+    public Shared Sub chkLogging_CheckedChanged(sender As Object, e As EventArgs) Handles chkLogging.CheckedChanged
+        'Some reason it's set to private will investigate later..
+        'File.Delete(Program.MainForm.lblDirectory.Text.Replace("\data\win32", "") & "\itemlog.txt")
         MsgBox("Please only turn this feature on if you are specifically asked to. If AIDA didn't tell you to turn it on, don't.")
     End Sub
 

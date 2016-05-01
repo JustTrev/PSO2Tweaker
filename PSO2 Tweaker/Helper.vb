@@ -32,14 +32,24 @@ Public Class Helper
 
     Public Shared Sub WriteDebugInfo(ByVal addThisText As String)
         Try
-            Program.MainForm.WriteDebugInfo(addThisText)
+            If RegKey.GetValue(Of String)(RegKey.GUIPlatform) = "Simple" Then
+                Program.MainForm2.WriteDebugInfo(addThisText)
+            Else
+                Program.MainForm.WriteDebugInfo(addThisText)
+            End If
         Catch
+
         End Try
         File.AppendAllText(Program.StartPath & "\logfile.txt", DateTime.Now.ToString("G") & " " & addThisText & vbCrLf)
     End Sub
 
     Public Shared Sub WriteDebugInfoSameLine(ByVal addThisText As String)
         Try
+            If RegKey.GetValue(Of String)(RegKey.GUIPlatform) = "Simple" Then
+                Program.MainForm2.WriteDebugInfoSameLine(addThisText)
+            Else
+                Program.MainForm.WriteDebugInfoSameLine(addThisText)
+            End If
             Program.MainForm.WriteDebugInfoSameLine(addThisText)
         Catch
         End Try
@@ -49,14 +59,22 @@ Public Class Helper
     Public Shared Sub WriteDebugInfoAndOk(ByVal addThisText As String)
         File.AppendAllText(Program.StartPath & "\logfile.txt", DateTime.Now.ToString("G") & " " & addThisText & " [OK!]" & vbCrLf)
         Try
-            Program.MainForm.WriteDebugInfoAndOk(addThisText)
+            If RegKey.GetValue(Of String)(RegKey.GUIPlatform) = "Simple" Then
+                Program.MainForm2.WriteDebugInfoAndOk(addThisText)
+            Else
+                Program.MainForm.WriteDebugInfoAndOk(addThisText)
+            End If
         Catch
         End Try
     End Sub
 
     Public Shared Sub WriteDebugInfoAndWarning(ByVal addThisText As String)
         Try
-            Program.MainForm.WriteDebugInfoAndWarning(addThisText)
+            If RegKey.GetValue(Of String)(RegKey.GUIPlatform) = "Simple" Then
+                Program.MainForm2.WriteDebugInfoAndWarning(addThisText)
+            Else
+                Program.MainForm.WriteDebugInfoAndWarning(addThisText)
+            End If
         Catch
         End Try
         File.AppendAllText(Program.StartPath & "\logfile.txt", DateTime.Now.ToString("G") & " " & addThisText & " [WARNING!]" & vbCrLf)
@@ -64,7 +82,11 @@ Public Class Helper
 
     Public Shared Sub WriteDebugInfoAndFailed(ByVal addThisText As String)
         Try
-            Program.MainForm.WriteDebugInfoAndFailed(addThisText)
+            If RegKey.GetValue(Of String)(RegKey.GUIPlatform) = "Simple" Then
+                Program.MainForm2.WriteDebugInfoAndFailed(addThisText)
+            Else
+                Program.MainForm.WriteDebugInfoAndFailed(addThisText)
+            End If
         Catch
         End Try
         File.AppendAllText(Program.StartPath & "\logfile.txt", DateTime.Now.ToString("G") & " " & addThisText & " [FAILED!]" & vbCrLf)
@@ -280,8 +302,16 @@ Public Class Helper
 
             RegKey.SetValue(Of String)(RegKey.Pso2Dir, myFolderBrowser.SelectedPath)
             Program.Pso2RootDir = myFolderBrowser.SelectedPath
-            If Program.MainForm IsNot Nothing Then Program.MainForm.lblDirectory.Text = myFolderBrowser.SelectedPath
-            WriteDebugInfoAndOk(Program.Pso2RootDir & " " & Resources.strSetAsYourPSO2)
+
+            If RegKey.GetValue(Of String)(RegKey.GUIPlatform) = "Simple" Then
+                If Program.MainForm2 IsNot Nothing Then Program.MainForm2.lblDirectory.Text = myFolderBrowser.SelectedPath
+                WriteDebugInfoAndOk(Program.Pso2RootDir & " " & Resources.strSetAsYourPSO2)
+            Else
+                If Program.MainForm IsNot Nothing Then Program.MainForm.lblDirectory.Text = myFolderBrowser.SelectedPath
+                WriteDebugInfoAndOk(Program.Pso2RootDir & " " & Resources.strSetAsYourPSO2)
+            End If
+
+
 
         Catch ex As Exception
             Log(ex.Message.ToString & " Stack Trace: " & ex.StackTrace)

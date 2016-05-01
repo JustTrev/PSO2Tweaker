@@ -231,7 +231,7 @@ Public Class FrmOptions
         SetLocale()
     End Sub
 
-    Private Sub ColorPickerButton2_SelectedColorChanged(sender As Object, e As EventArgs) Handles ColorPickerButton2.SelectedColorChanged
+    Public Sub ColorPickerButton2_SelectedColorChanged(sender As Object, e As EventArgs) Handles ColorPickerButton2.SelectedColorChanged
         Program.MainForm.ForeColor = ColorPickerButton2.SelectedColor
         FrmPso2Options.ForeColor = ColorPickerButton2.SelectedColor
         FrmPso2Options.TabItem1.TextColor = ColorPickerButton2.SelectedColor
@@ -339,7 +339,7 @@ Public Class FrmOptions
                 Dim RemoveYesNo As MsgBoxResult = MsgBox("Would you like to remove the current picture?", MsgBoxStyle.YesNo)
                 If RemoveYesNo = MsgBoxResult.Yes Then
                     FrmMain.Office2007StartButton1.Image = Nothing
-                    RegKey.SetValue(Of String)(RegKey.ORBLocation, "")
+                    RegKey.SetValue(RegKey.ORBLocation, "")
                     Exit Sub
                 End If
                 If RemoveYesNo = MsgBoxResult.No Then Return
