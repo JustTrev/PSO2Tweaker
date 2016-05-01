@@ -293,6 +293,7 @@ Partial Class FrmMain2
         Me.webBrowser1.AllowWebBrowserDrop = False
         Me.webBrowser1.Location = New System.Drawing.Point(10, 244)
         Me.webBrowser1.Name = "webBrowser1"
+        Me.webBrowser1.ScriptErrorsSuppressed = True
         Me.webBrowser1.ScrollBarsEnabled = False
         Me.webBrowser1.Size = New System.Drawing.Size(725, 445)
         Me.webBrowser1.TabIndex = 5
@@ -2118,8 +2119,8 @@ Partial Class FrmMain2
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(745, 720)
         Me.Controls.Add(Me.quit_btn)
-        Me.Controls.Add(Me.settingsPanel)
         Me.Controls.Add(Me.Main)
+        Me.Controls.Add(Me.settingsPanel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "FrmMain2"
